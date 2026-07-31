@@ -4,7 +4,7 @@ const cors = require('cors');
 const connectDB = require('./config/db');
 dotenv.config();
 connectDB();
-
+const path = require("path");
 
 
 
@@ -19,9 +19,6 @@ app.use(cors(
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.get('/', (req, res) => {
-  res.send('Shopnest back end is working properly World!');
-});
 
 app.use('/api/auth', require('./routes/authRoutes'));
 app.use('/api/products', require('./routes/productRoutes.js'));
@@ -33,8 +30,7 @@ if(process.env.NODE_ENV === 'production'){
   app.use(express.static(path.join(__dirname, '../frontend/build')));
 
   app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, '../', 'frontend', 'build', 'index.html'));
-  });
+  res.sendFile(path.join(__dirname, "../frontend/build/index.html"));  });
 }else {
   app.get('/', (req, res) => {
     res.send('Shopnest API is running in development mode...');

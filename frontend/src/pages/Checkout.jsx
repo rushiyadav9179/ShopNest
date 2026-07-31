@@ -65,7 +65,7 @@ const bypassPayment = async () => {
     console.log("Original Cart Items:", cartItems);
     console.log("Items Sent To Backend:", formattedItems);
 
-const saveOrderRes = await fetch('${API_URL}/api/orders', {
+const saveOrderRes = await fetch(`${API_URL}/api/orders`, {
   method: 'POST',
   headers: {
     'Content-Type': 'application/json',
